@@ -99,7 +99,7 @@ router.get('/all',async(req, res) => {
 //@route GET  api/profile/user/:user_id
 //@desc  Get profile by user_id
 //@access public
-router.get('/user/:user_id',async(req, res) => {    
+router.get('/user/:user_id',async(req, res) => {  
     try {
         const profile = await Profile.findOne({ user: req.params.user_id}).populate('user',['name','avatar']);
 

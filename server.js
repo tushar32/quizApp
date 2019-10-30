@@ -28,7 +28,7 @@ app.use('/api/auth',auth);
 app.use('/api/posts',posts);
 app.use('/api/profile',profile);
 
-app.get('/',(req, res) => res.send('API running'))
+app.get('/',(req, res) => res.send('API running'));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log('API running'));

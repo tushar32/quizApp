@@ -20,7 +20,7 @@ async (req,res) => {
 });
 
 //@route POST  api/auth
-//@desc Register user
+//@desc Login user
 router.post('/login', [
     check('email','Please enter a valid email').isEmail(),
     // password must be at least 5 chars long
