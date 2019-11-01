@@ -1,7 +1,7 @@
 import React,{ Fragment,useState } from 'react';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
-// call action type from component and use where you want to call that action
+import { setAlert } from '../../actions/alert';// call action type (setAlert) from component and use where you want to call that action
+
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
  

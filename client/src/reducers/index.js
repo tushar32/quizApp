@@ -4,5 +4,5 @@ import register from './authReducer';
 
 export default combineReducers({
     alert,
-    register
+    register,
 });

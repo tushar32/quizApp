@@ -1,6 +1,10 @@
 import React,{ Fragment,useState } from 'react';
+import { login } from '../../actions/auth';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { link, Redirect } from 'react-router-dom';
  
-const Login = () => {
+const Login = ({ login, isAuth }) => {
 
     const [formData, setFormData ] = useState({
        name: '',
@@ -9,7 +13,7 @@ const Login = () => {
        password2: '',
     });
 
-    const {email,password,password2 } = formData;
+    const {email,password } = formData;
 
     const onChange = e => setFormData({
       ...formData,
@@ -18,14 +22,14 @@ const Login = () => {
 
     const onSubmit = e =>  {
 
-      e.preventDefault();
-
-      if(password !== password2){
-        console.log("password doesn't match");
-      } else {
-        console.log(formData);
-      }
+       e.preventDefault();
+        login({ email,password })
     }
+
+    if(isAuth){
+      return <Redirect to="/dashboard"></Redirect>
+    }
+    
    return (
      <Fragment>
        <h1 className="large text-primary">Sign In</h1>
@@ -57,4 +61,13 @@ const Login = () => {
     )
 }
  
-export default Login
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool
+}
+
+const mapStateToProps = state => ({
+  isAuth: state.register.isAuth
+});
+
+export default connect(mapStateToProps,{ login }) (Login);
