@@ -4,8 +4,9 @@ import { setAlert } from '../../actions/alert';// call action type (setAlert) fr
 
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
- 
-const Register = ({ setAlert, register }) => {
+import { link, Redirect } from 'react-router-dom';
+
+const Register = ({ setAlert, register ,isAuth}) => {
 
     const [formData, setFormData ] = useState({
        name: '',
@@ -20,6 +21,10 @@ const Register = ({ setAlert, register }) => {
       ...formData,
        [e.target.name]: e.target.value
     })
+
+    if(isAuth){
+      return <Redirect to="/dashboard"></Redirect>
+    }
 
     const onSubmit = e =>  {
       e.preventDefault();
@@ -85,7 +90,12 @@ const Register = ({ setAlert, register }) => {
 
  Register.propTypes = {
    setAlert: PropTypes.func.isRequired,
-   register: PropTypes.func.isRequired
+   register: PropTypes.func.isRequired,
+   isAuth: PropTypes.bool,
  }
+ const mapStateToProps = state => ({
+  isAuth: state.register.isAuth
+});
+
 // Pass the setAlert function to action again
-export default connect(null,{ setAlert, register }) (Register);
+export default connect(mapStateToProps,{ setAlert, register }) (Register);
