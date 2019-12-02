@@ -55,7 +55,7 @@ export const createProfile  = ( formData, histroy, edit = false) => async dispat
 
 //add experience
 
-export const addExperience = (formData) => async dispatch => {
+export const addExperience = (formData,histroy) => async dispatch => {
     const options = {
         headers: {
             'Content-Type' : 'application/json'
@@ -64,14 +64,14 @@ export const addExperience = (formData) => async dispatch => {
 
     const body = JSON.stringify(formData);
     try {
-        const res = await axios.post('/api/profile/exprience', body, options)
+        const res = await axios.put('/api/profile/experience', body, options)
 
         dispatch({
             type:UPDATE_PROFILE,
             payload: res.data
         });
         dispatch(setAlert('Experience is created'));
-
+        histroy.push('/dashboard');
     } catch (error) {
         const errors = error.response.data.errors;
 
@@ -88,7 +88,7 @@ export const addExperience = (formData) => async dispatch => {
 
 //add education
 
-export const add_education = (formData) => async dispatch => {
+export const addEducation = (formData) => async dispatch => {
     const options = {
         headers: {
             'Content-Type' : 'application/json'

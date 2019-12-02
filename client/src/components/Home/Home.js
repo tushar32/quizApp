@@ -1,13 +1,11 @@
 import React from 'react';
  
-class Counter extends React.Component
-render() {
+const Home = () => {
    return (
       <div>
         Component
       </div>
-    );
-   }
+    )
 }
  
-export default Component
+export default Home

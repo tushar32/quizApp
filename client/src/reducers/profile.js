@@ -18,6 +18,7 @@ export default function(state = initialState, action) {
      switch(type){
          case GET_PROFILE:
          case UPDATE_PROFILE:
+             state = { profile : { name: "TUhsar" } }
              return {
                  ...state,
                  profile: payload,
