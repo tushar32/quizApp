@@ -1,0 +1,74 @@
+.pad-zero {
+    padding: 0;
+}
+nav.navbar.navbar-default.vertical-nav li {
+    display: block;
+    float: none;
+    height: 7px;
+    margin-bottom: 29px;
+    width: 50px;
+}
+nav.navbar.navbar-default.vertical-nav{
+    position: fixed;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    top:50%;
+    left: 129px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    transition: all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+}
+.navbar-collapse.collapse {
+    display:block!important;
+    height:auto!important;
+    padding-bottom:0;
+    overflow:visible!important
+   }
+.navbar-collapse.in {
+overflow-y:visible
+}
+
+nav.navbar.navbar-default.vertical-nav li a {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+nav.navbar.navbar-default.vertical-nav li.active span {
+    left: 50px;
+    opacity: 1;
+    color: #fff;
+}
+
+nav.navbar.navbar-default.vertical-nav li span {
+    font-size: 11px;
+    font-weight: 500;
+    left: 90px;
+    line-height: 1;
+    color:#141414;
+    position: absolute;
+    opacity: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+}
+
+nav.navbar.navbar-default.vertical-nav li a::before {
+    background-color: #fff;
+    border-radius: 50%;
+    height: 50px;
+    top: -21px !important;
+    opacity: 1;
+    transform: scale(0);
+    width: 50px;
+}
+
+nav.navbar.navbar-default.vertical-nav li a::after {
+    background: #fff none repeat scroll 0 0;
+    border: 3px solid#fff;
+    border-radius: 50%;
+    height: 0;
+    transition: all 0.1s ease-out 0s;
+    width: 0;
+}

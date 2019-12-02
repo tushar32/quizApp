@@ -188,4 +188,5 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
    profile: state.profile
  });
 
+ //connect('states that are uses as a prop in a component','action fucntion need to call')
 export default connect(mapStateToProps,{ createProfile, getCurrentProfile }) (withRouter(EditProfile));

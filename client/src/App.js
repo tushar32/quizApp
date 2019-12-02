@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route,Switch }  from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch,withRouter}  from 'react-router-dom';
 import Navbar from './components/layout/Navigation';
+import FrontNavbar from './components/layout/FrontNavigation';
 import Landing from './components/layout/Landing';
 import Home from './components/Home/Home';
 import Login from './components/auth/Login';
@@ -15,6 +16,7 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
+import'./css/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //Redux
 
@@ -25,34 +27,50 @@ if(localStorage.token){
   setAuthToken(localStorage.token)
 }
 
-const  App = () =>  {
+const  App = (props) =>  {
 
   // Learn more about useEffect https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
     store.dispatch(loadUser());
   },[]);
-console.log(currentRoute.name);
+
+  
+ const current_route = window.location.pathname;
   return(
-  <Provider store={store}>
-    <Router>
-      <Fragment>
-        <Navbar />
-        
-        <section className='container'>
-        <Route exact path='/' component={Home} />
-          <Alert/>
-          <Switch>
+    <Provider store={store}>
+      <Router>
+      { current_route == '/' ? 
+        <Fragment>
+          <div className="container-fluid">
+            <div className="row">
+              <div id="vertical_nav_wrap" className="col-lg-4 col-xs-12 pad-zero vertical-nav-wrap">
+                <FrontNavbar /> 
+              </div>
+              <div className="col-lg-8 col-xs-12 pad-zero"></div>
+
+            </div>
+          </div>
+
+        </Fragment>
+       :
+        <Fragment>
+         <section className='container'>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-            <PrivateRoute exact path='/dashboard' component={Dashboard} />
-            <PrivateRoute exact path='/create-portfolio' component={CreateProfile} />
-            <PrivateRoute exact path='/edit-portfolio' component={EditProfile} />
-            <PrivateRoute exact path='/add-experience' component={AddExpierence} />
-            <PrivateRoute exact path='/add-education' component={AddEducation} /> 
-          </Switch>
-        </section>
-      </Fragment>
+              <Alert/>
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/register' component={Register} />
+                <PrivateRoute exact path='/dashboard' component={Dashboard} />
+                <PrivateRoute exact path='/create-portfolio' component={CreateProfile} />
+                <PrivateRoute exact path='/edit-portfolio' component={EditProfile} />
+                <PrivateRoute exact path='/add-experience' component={AddExpierence} />
+                <PrivateRoute exact path='/add-education' component={AddEducation} /> 
+              </Switch>
+          </section>
+          <Navbar />          
+        </Fragment>
+      }
       </Router>
     </Provider>
 )};
