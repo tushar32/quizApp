@@ -1,3 +1,77 @@
+a {
+    color: 
+    #141414;
+    text-decoration: none;
+}
+
+.btn {
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 1.5px;
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+    height: 37px;
+    background:#141414;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    padding: 7px 20px;
+    transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+}
+
+.btn .mask {
+    background: 
+#e91e63;
+border-radius: 2px;
+display: block;
+height: 100%;
+left: 0;
+position: absolute;
+top: 0;
+width: 0;
+z-index: 1;
+transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+}
+.btn .btn-label {
+    padding: 4px 0;
+}
+.btn span {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+}
+
+header .header-wrap .pe-7s-download {
+    font-size: 25px;
+    display: none;
+    color: 
+    #fff;
+}
+
+/* Header */
+header .header-wrap {
+    padding-top: 16px;
+}
+.center-div {
+    margin: 0 auto;
+    overflow: hidden;
+    float: none;
+    clear: both;
+}
+.name span {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: block;
+    color: 
+    #fff;
+    padding-top: 7px;
+}
+
+/* Header finished */
+
 .pad-zero {
     padding: 0;
 }
@@ -72,3 +146,4 @@ nav.navbar.navbar-default.vertical-nav li a::after {
     transition: all 0.1s ease-out 0s;
     width: 0;
 }
+

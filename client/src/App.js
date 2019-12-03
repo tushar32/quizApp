@@ -17,7 +17,6 @@ import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 import'./css/style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 //Redux
 
 import { Provider } from 'react-redux';
@@ -33,7 +32,6 @@ const  App = (props) =>  {
   useEffect(() => {
     store.dispatch(loadUser());
   },[]);
-
   
  const current_route = window.location.pathname;
   return(
@@ -41,13 +39,17 @@ const  App = (props) =>  {
       <Router>
       { current_route == '/' ? 
         <Fragment>
+        <div class="fixed-bg-overlay"></div>
+        <div class="fixed-bg"></div>
           <div className="container-fluid">
             <div className="row">
               <div id="vertical_nav_wrap" className="col-lg-4 col-xs-12 pad-zero vertical-nav-wrap">
                 <FrontNavbar /> 
               </div>
-              <div className="col-lg-8 col-xs-12 pad-zero"></div>
-
+              <div className="col-lg-8 col-xs-12 pad-zero">
+                <Home />
+              </div>
+                      
             </div>
           </div>
 

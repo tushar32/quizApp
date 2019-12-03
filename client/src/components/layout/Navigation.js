@@ -32,7 +32,7 @@ const Navbar = ( { auth: { user, isAuth },logout }) => {
     return (
       <nav className="navbar bg-dark">
         <h1>
-          <a href="!#"><i className="fas fa-code"></i> DeveloperPort</a>
+          <a href="/"><i className="fas fa-code"></i> DeveloperPort</a>
         </h1>
         { isAuth ? authLinks : GuestLinks }
       </nav>

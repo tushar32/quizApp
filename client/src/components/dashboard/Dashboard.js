@@ -34,7 +34,7 @@ const Dashboard = ( {  auth: { user },
                         Create Portfolio
                     </Link>
                 </Fragment>
-            )};
+            )}
 
         </Fragment>
     )
