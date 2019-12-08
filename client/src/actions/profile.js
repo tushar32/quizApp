@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE,LOGIN_SUCCESS } from './types';
 import { setAlert } from './alert';
 import axios from 'axios';
 
@@ -10,6 +10,27 @@ export const getCurrentProfile = () => async dispatch => {
             type: GET_PROFILE,
             payload: res.data
         })
+    } catch (error) {
+        console.log(error)
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
+export const getProfile = () => async dispatch => {
+  
+    try {
+        
+        const res = await axios.get('/api/profile/tushar');
+       // console.log(res.data);
+        
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        })
+
     } catch (error) {
         console.log(error)
         dispatch({
@@ -118,3 +139,41 @@ export const addEducation = (formData) => async dispatch => {
         })
     }
 }
+
+// Delete experience
+export const deleteExperience = id => async dispatch => {
+    try {
+      const res = await axios.delete(`/api/profile/experience/${id}`);
+  
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data
+      });
+  
+      dispatch(setAlert('Experience Removed', 'success'));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
+  };
+  
+  // Delete education
+  export const deleteEducation = id => async dispatch => {
+    try {
+      const res = await axios.delete(`/api/profile/education/${id}`);
+  
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data
+      });
+  
+      dispatch(setAlert('Education Removed', 'success'));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
+  };

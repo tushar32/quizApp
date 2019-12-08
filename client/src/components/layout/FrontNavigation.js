@@ -19,9 +19,12 @@ const FrontNavbar = () => {
                     <li className="active">
                         <Link to="/about"><span> About </span></Link>
                     </li>
-                    <li className=""><a data-scroll="" href="#services_sec"><span>services</span></a><span>services</span></li>
-                    <li className=""><a data-scroll="" href="#skill_sec"><span>skills</span></a><span>skills</span></li>
-                    <li><a data-scroll="" href="#work_sec"><span>work</span></a><span>work</span></li>
+                    <li className="">
+                        <a data-scroll="" href="#services_sec">
+                            <span>services</span></a>
+                    </li>
+                    <li className=""><a data-scroll="" href="#skill_sec"><span>Full Stack</span></a><span>Full Stack</span></li>
+                    <li><a data-scroll="" href="#work_sec"><span>Other Skills</span></a><span>Other Skills</span></li>
                     <li><a data-scroll="" href="#edu_sec"><span>education</span></a><span>education</span></li>
                     <li><a data-scroll="" href="#exp_sec"><span>experience</span></a><span>experience</span></li>
                     <li><a data-scroll="" href="#client_sec"><span>clients</span></a><span>clients</span></li>

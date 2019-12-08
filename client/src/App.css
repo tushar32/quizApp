@@ -19,32 +19,7 @@ body {
   line-height: 1.6;
   background-color: #fff;
   color: #333;
-}
-
-.fixed-bg-overlay {
-  background: rgba(255, 255, 255, 0);
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  transform: translateZ(0);
-  position: fixed;
-  backface-visibility: hidden;
-}
-
-.fixed-bg {
-  background: transparent url("./img/mainbg.jpg") no-repeat;
-      background-position-x: 0%;
-      background-position-y: 0%;
-      background-size: auto;
-  image-rendering: optimizeQuality;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  position: fixed;
-  background-position: center;
-  background-size: cover;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  overflow: auto;
 }
 
 a {
@@ -549,7 +524,7 @@ button {
   }
 
   .navbar h1 {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem !important;
   }
 
   .navbar .welcome {

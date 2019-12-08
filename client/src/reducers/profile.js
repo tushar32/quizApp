@@ -6,8 +6,7 @@ import{
 } from '../actions/types';
 
 const initialState = {
-  profile: '',
-  profile: [],
+  profile: null,
   error:'',
   loading: true
 }
@@ -18,7 +17,7 @@ export default function(state = initialState, action) {
      switch(type){
          case GET_PROFILE:
          case UPDATE_PROFILE:
-             state = { profile : { name: "TUhsar" } }
+             state = { profile : { name: "Tushar" } }
              return {
                  ...state,
                  profile: payload,

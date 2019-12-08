@@ -85,6 +85,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
             <option value="Senior Developer">Senior Developer</option>
+            <option value="Full Stack Developer">Full Stack Developer</option>
             <option value="Manager">Manager</option>
             <option value="Student or Learning">Student or Learning</option>
             <option value="Instructor">Instructor or Teacher</option>
@@ -171,8 +172,8 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         
         </Fragment> 
     }
-         <input type="submit" class="btn btn-primary my-1" />
-        <a class="btn btn-light my-1" href="dashboard.html">Go Back</a>
+         <input type="submit" className="btn btn-primary my-1" />
+        <a className="btn btn-light my-1" href="dashboard.html">Go Back</a>
         </form>
       </Fragment>
     );

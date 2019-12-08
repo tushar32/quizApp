@@ -38,8 +38,8 @@ const  App = (props) =>  {
       <Router>
       { current_route == '/' ? 
         <Fragment>
-        <div class="fixed-bg-overlay"></div>
-        <div class="fixed-bg"></div>
+        <div className="fixed-bg-overlay"></div>
+        <div className="fixed-bg"></div>
           <div className="container-fluid">
             <div className="row">
               <div id="vertical_nav_wrap" className="col-lg-4 col-xs-12 pad-zero vertical-nav-wrap">

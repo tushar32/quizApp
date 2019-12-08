@@ -1,4 +1,4 @@
-import React,{ Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ const Navbar = ( { auth: { user, isAuth },logout }) => {
     <ul>
       <li>
         <Link to='/dashboard'>
-          <i className='fas fa-user' />Welcome {''}
+          <i className='fas fa-user' />Welcome {}
           <span className='hide-sm'>Dashboard</span>
         </Link>
       </li>
@@ -31,9 +31,9 @@ const Navbar = ( { auth: { user, isAuth },logout }) => {
   );
     return (
       <nav className="navbar bg-dark">
-        <h1>
+        <h2>
           <a href="/"><i className="fas fa-code"></i> DeveloperPort</a>
-        </h1>
+        </h2>
         { isAuth ? authLinks : GuestLinks }
       </nav>
     )

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/ui/spinner';
 import DashboardActions from './DashboardActions';
+import Experience from './Experience';
+import Education from './Education';
 import { Link } from 'react-router-dom';
 
 const Dashboard = ( {  auth: { user },
@@ -12,7 +14,7 @@ const Dashboard = ( {  auth: { user },
 
     useEffect(() => {
         getCurrentProfile();
-    },[]);
+    },[getCurrentProfile]);
     //[] is used to call the getCurrentProfile only once
     return loading && profile === null ? (
     <Spinner /> 
@@ -26,6 +28,8 @@ const Dashboard = ( {  auth: { user },
             {  profile !== null ? (
                 <Fragment>
                     <DashboardActions />
+                    <Experience experience={profile.experience} />
+                    <Education education={profile.education} />
                 </Fragment>
             ) : (
                 <Fragment>

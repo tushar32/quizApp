@@ -24,13 +24,13 @@ Project:	Eric
 /****************************/
 /** Imports **/
 /****************************/
-@import "../css/animate.css";	
-@import "../css/et-line-font.css";	
-@import "../css/owl.carousel.css";	
+@import "../css/animate.css";
 @import "../css/owl.theme.default.min.css";	
 @import "../css/inputtext.css";	
 @import "../css/filter.css";	
-@import "../css/default-skin.css";
+@import "../css/default-skin/default-skin.css";
+@import "../css/et-line-font.css";
+@import "../css/bootstrap.min.css";	
 
 $primery_font_color:#fff;
 $secondery_color:#141414;
@@ -296,6 +296,25 @@ p{
 	height: 100%;
 	width: 100%;
 	overflow:hidden!important;
+}
+.fullStackTable {
+	width: 30%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.fullStackTable td:first-child{
+	border-top: none;
+}
+
+.fullStackTable td{
+	border: solid 1px #fff;
+	padding: 10px;
+	color:#e91e63;
+}
+.word-space {
+	word-spacing: 1rem;
+	font-size: 1.4rem;
 }
 /* Effect 1: YouTube loading */
 .la-anim-1 {
@@ -1632,3 +1651,4 @@ footer {
 		}
 	}
 }
+
