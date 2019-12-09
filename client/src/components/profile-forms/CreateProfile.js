@@ -1,8 +1,9 @@
-import React, { useState, Fragment} from 'react';
+import React, { useState, useEffect,Fragment} from 'react';
 import { Link, withRouter, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from '../../actions/profile';
+import Top5Skills from './Top5Skills';
  
 const CreateProfile = ({ createProfile, history }) => {
 
@@ -37,6 +38,16 @@ const CreateProfile = ({ createProfile, history }) => {
     } = formData;
 
    const [ displaySocialInput, ToggleSocialInput ] = useState(false);
+   const [skillCount, setSkillCount] = useState(0);
+
+   const AddTop5Skills = ()  => {
+    setSkillCount(skillCount => skillCount + 1);
+  
+       if(skillCount > 5) 
+        return;
+  
+    }
+    useEffect(() => setSkillCount(skillCount => skillCount + 1), []);
 
    const onChange = e => setFormData({
     ...formData,
@@ -58,6 +69,13 @@ const CreateProfile = ({ createProfile, history }) => {
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e) }>
+      <Fragment>
+          
+          <Top5Skills skillCount = { skillCount }/>
+          <button type="button" onClick = {AddTop5Skills} className="btn btn-light">
+            Add Top 5 SKills
+          </button>
+        </Fragment>
         <div className="form-group">
           <select name="status" value={status} 
           onChange={e => onChange(e) } >

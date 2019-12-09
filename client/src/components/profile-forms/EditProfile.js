@@ -6,6 +6,7 @@ import { createProfile, getCurrentProfile } from '../../actions/profile';
  
 const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentProfile, history }) => {
 
+  
     const [formData, setFormData ] = useState({
         company: "",
         website: "",
@@ -19,6 +20,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin: "",
         youtube: "",
         instagram: "",
+        top_skills: {}
      });
 
      useEffect(() => {
@@ -37,7 +39,8 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         facebook: loading || !profile.social ? '' : profile.social.facebook,
         linkedin: loading || !profile.social ? '' : profile.social.linkedin,
         youtube: loading || !profile.social ? '' : profile.social.youtube,
-        instagram: loading || !profile.social ? '' : profile.social.instagram
+        instagram: loading || !profile.social ? '' : profile.social.instagram,
+        top_skills: loading || !profile.top_skills ? '' : profile.top_skills
       });
   }, [loading, getCurrentProfile]);
 
@@ -54,9 +57,11 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin,
         youtube,
         instagram,
+        top_skills
     } = formData;
 
    const [ displaySocialInput, ToggleSocialInput ] = useState(false);
+   const [skillCount, setSkillCount] = useState({ values: []});
 
    const onChange = e => setFormData({
     ...formData,
@@ -67,6 +72,43 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
     e.preventDefault();
      createProfile(formData, history,true)
  }
+
+ const AddTop5Skills = ()  => {
+   const new_Skills  =  [...skillCount];
+   if(new_Skills.length >= 5)
+    return;
+
+   new_Skills.push(new_Skills.length+1)
+   setSkillCount(new_Skills);
+
+   console.log(skillCount);
+
+  }
+
+  function handleChange(i, event) {
+    const values = [...skillCount];
+    values[i].values = event.target.value;
+    setSkillCount(values);
+  }
+  
+  function topSkills() {
+
+    return (
+      skillCount.map(i => ( 
+          <Fragment key={i}>
+            <div className="form-group social-input">
+                <input type="text" placeholder="Name of Skill" name="top_5_skills.title" value='' 
+                onChange={e => handleChange(i,e) }/>
+                <textarea placeholder="A Short Description" name="top_5_skills.desciption" value='' 
+                onChange={e => handleChange(i,e) }></textarea>
+            </div>
+            
+          </Fragment>
+      ))
+       
+    )
+  }
+
    return (
       <Fragment>
         <h1 className="large text-primary">
@@ -78,6 +120,12 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e) }>
+
+        { topSkills() }
+        <button type="button" onClick = {AddTop5Skills} className="btn btn-light">
+              Add Top 5 SKills
+            </button>
+
         <div className="form-group">
           <select name="status" value={status} 
           onChange={e => onChange(e) } >
@@ -110,7 +158,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
           <small className="form-text">City & state suggested (eg. Boston, MA)</small>
         </div>
         <div className="form-group">
-          <input type="text" placeholder="* Skills" name="skills" value={skills} 
+          <input type="text" placeholder="* Top 5 Skills" name="skills" value={skills} 
           onChange={e => onChange(e) }/>
           <small className="form-text">Please use comma separated values (eg.
             HTML,CSS,JavaScript,PHP)</small>
@@ -131,6 +179,12 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
           onChange={e => onChange(e) }></textarea>
           <small className="form-text">Tell us a little about yourself</small>
         </div>
+
+         <div className="my-2">
+          <label> Top 5 Technical Skills </label>
+        </div>
+
+        
 
         <div className="my-2">
           <button type="button" onClick = { () => { ToggleSocialInput(!displaySocialInput) } } className="btn btn-light">
