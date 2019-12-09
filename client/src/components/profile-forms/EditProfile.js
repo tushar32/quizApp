@@ -20,7 +20,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin: "",
         youtube: "",
         instagram: "",
-        top_skills: {}
+        top_skills: []
      });
 
      useEffect(() => {
@@ -40,7 +40,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin: loading || !profile.social ? '' : profile.social.linkedin,
         youtube: loading || !profile.social ? '' : profile.social.youtube,
         instagram: loading || !profile.social ? '' : profile.social.instagram,
-        top_skills: loading || !profile.top_skills ? '' : profile.top_skills
+        top_skills: loading || !profile.top_skills ? [] : profile.top_skills
       });
   }, [loading, getCurrentProfile]);
 
@@ -56,12 +56,11 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         facebook,
         linkedin,
         youtube,
-        instagram,
-        top_skills
+        instagram
     } = formData;
 
    const [ displaySocialInput, ToggleSocialInput ] = useState(false);
-   const [skillCount, setSkillCount] = useState({ values: []});
+   const [skillCount, setSkillCount] = useState([] );
 
    const onChange = e => setFormData({
     ...formData,
@@ -70,15 +69,17 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
 
   const onSubmit = e =>  {
     e.preventDefault();
+    console.log('formData',formData);
+    
      createProfile(formData, history,true)
  }
 
  const AddTop5Skills = ()  => {
-   const new_Skills  =  [...skillCount];
+   let new_Skills  =  [...skillCount];
    if(new_Skills.length >= 5)
     return;
 
-   new_Skills.push(new_Skills.length+1)
+   new_Skills =[...new_Skills,''];
    setSkillCount(new_Skills);
 
    console.log(skillCount);
@@ -86,26 +87,26 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
   }
 
   function handleChange(i, event) {
-    const values = [...skillCount];
-    values[i].values = event.target.value;
+    let values = [...skillCount];
+    values[i] = event.target.value;
     setSkillCount(values);
   }
   
   function topSkills() {
+  console.log(skillCount);
 
     return (
-      skillCount.map(i => ( 
-          <Fragment key={i}>
-            <div className="form-group social-input">
-                <input type="text" placeholder="Name of Skill" name="top_5_skills.title" value='' 
-                onChange={e => handleChange(i,e) }/>
-                <textarea placeholder="A Short Description" name="top_5_skills.desciption" value='' 
-                onChange={e => handleChange(i,e) }></textarea>
-            </div>
-            
-          </Fragment>
+       skillCount.map((e,i) => (
+         
+        <div key={i}>        
+          <div className="form-group social-input">
+              <input type="text" placeholder="Name of Skill" name="top_skills['title']"
+              onChange={e => handleChange(i,e) }/>
+              <textarea placeholder="A Short Description" name="top_skills['description]" 
+              onChange={e => handleChange(i,e) }></textarea>
+          </div>
+        </div>
       ))
-       
     )
   }
 
@@ -121,7 +122,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e) }>
 
-        { topSkills() }
+        {topSkills()}
         <button type="button" onClick = {AddTop5Skills} className="btn btn-light">
               Add Top 5 SKills
             </button>
