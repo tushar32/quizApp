@@ -60,7 +60,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
     } = formData;
 
    const [ displaySocialInput, ToggleSocialInput ] = useState(false);
-   const [skillCount, setSkillCount] = useState([] );
+   const [skillCount, setSkillCount] = useState([{ title:'' ,description:''}] );
 
    const onChange = e => setFormData({
     ...formData,
@@ -79,35 +79,16 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
    if(new_Skills.length >= 5)
     return;
 
-   new_Skills =[...new_Skills,''];
-   setSkillCount(new_Skills);
-
-   console.log(skillCount);
-
+   new_Skills = [...new_Skills,{title:'',description:''}];
+    setSkillCount(new_Skills);
+    console.log(skillCount);
   }
 
-  function handleChange(i, event) {
-    let values = [...skillCount];
-    values[i] = event.target.value;
-    setSkillCount(values);
-  }
-  
-  function topSkills() {
-  console.log(skillCount);
-
-    return (
-       skillCount.map((e,i) => (
-         
-        <div key={i}>        
-          <div className="form-group social-input">
-              <input type="text" placeholder="Name of Skill" name="top_skills['title']"
-              onChange={e => handleChange(i,e) }/>
-              <textarea placeholder="A Short Description" name="top_skills['description]" 
-              onChange={e => handleChange(i,e) }></textarea>
-          </div>
-        </div>
-      ))
-    )
+  function handleChange(e) {
+    let updateSkills = [...skillCount];
+    console.log('e.target',e.target);
+    updateSkills[e.target.dataset.idx][e.target.dataset.name] = e.target.value;
+    setSkillCount(updateSkills);
   }
 
    return (
@@ -122,7 +103,24 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e) }>
 
-        {topSkills()}
+      {skillCount.map((value,idx) => {
+        const titleId = `title-${idx}`;
+        const descId = `description-${idx}`;
+
+        return (
+          <div key={`title-${idx}`}>        
+            <div className="form-group social-input">
+                <input type="text" data-idx={idx} name={titleId} data-name="title"  
+                placeholder="Name of Skill" value={skillCount[idx].title}
+                onChange={handleChange }/>
+                <textarea placeholder="A Short Description" data-name="description" 
+                name={ descId} data-idx={idx} value={skillCount[idx].description}
+                onChange={handleChange }></textarea>
+            </div>
+          </div>
+        );
+       })
+      }
         <button type="button" onClick = {AddTop5Skills} className="btn btn-light">
               Add Top 5 SKills
             </button>
