@@ -25,11 +25,11 @@ const ProfileSchema = new mongoose.Schema({
       top_skills: [
         {
           title: {
-            type: [String],
+            type: String,
             required: true,
           },
           description: {
-            type: [String],
+            type: String,
             required: true,
           }
         },

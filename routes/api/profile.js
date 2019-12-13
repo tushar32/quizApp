@@ -76,6 +76,8 @@ router.post('/',
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
     console.log(profileFields);
+    profileFields.top_skills = {};
+    if (req.body.top_skills) profileFields.top_skills = req.body.top_skills;
 
     try{
       let profile = await Profile.findOne({user: req.user.id});

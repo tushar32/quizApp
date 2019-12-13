@@ -20,12 +20,12 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin: "",
         youtube: "",
         instagram: "",
-        top_skills: []
+        top_skills: [{ title:'' ,description:''}]
      });
 
      useEffect(() => {
-      getCurrentProfile();
-  
+      getCurrentProfile(); 
+     
       setFormData({
         company: loading || !profile.company ? '' : profile.company,
         website: loading || !profile.website ? '' : profile.website,
@@ -40,8 +40,10 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin: loading || !profile.social ? '' : profile.social.linkedin,
         youtube: loading || !profile.social ? '' : profile.social.youtube,
         instagram: loading || !profile.social ? '' : profile.social.instagram,
-        top_skills: loading || !profile.top_skills ? [] : profile.top_skills
+        top_skills: loading || !profile.top_skills ? [{ title:'' ,description:''}] : profile.top_skills
       });
+      console.log(top_skills);
+  
   }, [loading, getCurrentProfile]);
 
      const {
@@ -56,39 +58,45 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         facebook,
         linkedin,
         youtube,
-        instagram
+        instagram,
+        top_skills
     } = formData;
 
    const [ displaySocialInput, ToggleSocialInput ] = useState(false);
-   const [skillCount, setSkillCount] = useState([{ title:'' ,description:''}] );
 
    const onChange = e => setFormData({
     ...formData,
      [e.target.name]: e.target.value
   })
+  console.log('top_skills',top_skills);
 
   const onSubmit = e =>  {
     e.preventDefault();
-    console.log('formData',formData);
-    
-     createProfile(formData, history,true)
+    formData.top_skills = top_skills;
+    createProfile(formData, history,true)
  }
 
  const AddTop5Skills = ()  => {
-   let new_Skills  =  [...skillCount];
-   if(new_Skills.length >= 5)
+  
+   if(top_skills.length >= 5)
     return;
 
-   new_Skills = [...new_Skills,{title:'',description:''}];
-    setSkillCount(new_Skills);
-    console.log(skillCount);
+  const new_Skills = [...top_skills,{title:'',description:''}];
+    setFormData({
+      ...formData,
+      top_skills:new_Skills
+    })
   }
 
   function handleChange(e) {
-    let updateSkills = [...skillCount];
-    console.log('e.target',e.target);
+    let updateSkills = [...top_skills];
+    // this will map the exact skill fields 
     updateSkills[e.target.dataset.idx][e.target.dataset.name] = e.target.value;
-    setSkillCount(updateSkills);
+    
+    setFormData({
+      ...formData,
+      updateSkills
+    })
   }
 
    return (
@@ -103,7 +111,7 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e) }>
 
-      {skillCount.map((value,idx) => {
+      {top_skills.map((value,idx) => {
         const titleId = `title-${idx}`;
         const descId = `description-${idx}`;
 
@@ -111,10 +119,10 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
           <div key={`title-${idx}`}>        
             <div className="form-group social-input">
                 <input type="text" data-idx={idx} name={titleId} data-name="title"  
-                placeholder="Name of Skill" value={skillCount[idx].title}
+                placeholder="Name of Skill" value={top_skills[idx].title}
                 onChange={handleChange }/>
                 <textarea placeholder="A Short Description" data-name="description" 
-                name={ descId} data-idx={idx} value={skillCount[idx].description}
+                name={ descId} data-idx={idx} value={top_skills[idx].description}
                 onChange={handleChange }></textarea>
             </div>
           </div>
