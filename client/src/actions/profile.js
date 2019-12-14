@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE,LOGIN_SUCCESS } from './types';
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
 import { setAlert } from './alert';
 import axios from 'axios';
 

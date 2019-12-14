@@ -30,7 +30,6 @@ Project:	Eric
 @import "../css/filter.css";	
 @import "../css/default-skin/default-skin.css";
 @import "../css/et-line-font.css";
-@import "../css/bootstrap.min.css";	
 
 $primery_font_color:#fff;
 $secondery_color:#141414;
@@ -312,9 +311,32 @@ p{
 	padding: 10px;
 	color:#e91e63;
 }
+.fullStackTable a{
+	color:#e91e63;
+}
 .word-space {
 	word-spacing: 1rem;
 	font-size: 1.4rem;
+}
+.modal-title{
+	color:#e91e63;
+	text-align:center;
+	font-style: italic;
+}
+.modal-content{
+	background: #000;
+	border: 1px solid;
+	color: #fff; 
+}
+.modal-header {
+	background: #fff;
+}
+
+.close{
+	color:#e91e63;
+}
+.close:focus, .close:hover{
+	color: #e91e63;
 }
 /* Effect 1: YouTube loading */
 .la-anim-1 {
@@ -597,6 +619,7 @@ nav.navbar.navbar-default.vertical-nav {
 		background:none;
 		border:none;
 		@include transition(all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s);
+		width:20%;
 		
 	li{
 		display: block;
@@ -768,7 +791,7 @@ a.goto-social,a.goto-social:hover {
 			}
 	}	
 	.progress-cat {
-		font-size:12px;
+		font-size:10px;
 		font-family:$secondery_font;
 		font-weight:600;
 		color:$primery_font_color;

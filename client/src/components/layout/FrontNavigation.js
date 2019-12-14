@@ -1,4 +1,4 @@
-import React,{ Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/style.css';
 
@@ -7,7 +7,7 @@ const FrontNavbar = () => {
     return (
         <nav className="navbar navbar-default vertical-nav" role="navigation">
         <div className="navbar-header">
-            <button type="button" class="btn btn-default navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse">
+            <button type="button" className="btn btn-default navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse">
                 <span className="mask"></span>
                 <span className="btn-label">
                     <span className="pe-7s-menu"></span>

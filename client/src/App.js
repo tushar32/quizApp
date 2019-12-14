@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route,Switch,withRouter}  from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch}  from 'react-router-dom';
 import Navbar from './components/layout/Navigation';
 import FrontNavbar from './components/layout/FrontNavigation';
-import Landing from './components/layout/Landing';
 import Home from './components/Home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -36,7 +35,7 @@ const  App = (props) =>  {
   return(
     <Provider store={store}>
       <Router>
-      { current_route == '/' ? 
+      { current_route === '/' ? 
         <Fragment>
         <div className="fixed-bg-overlay"></div>
         <div className="fixed-bg"></div>

@@ -6,11 +6,12 @@ import { getProfile } from '../../actions/profile';
 import Spinner from '../layout/ui/spinner';
 import signature from '../../img/signature.jpg';
 import FullStack from '../full-stack/FullStack';
+import TechSkills from '../tech-skills/TechSkills';
 
 const Home = ({
   profile: { profile, loading }   ,
   getProfile }) => {
-console.log(profile);
+
 
   useEffect(() => {
     getProfile();
@@ -38,14 +39,18 @@ console.log(profile);
 							<p className="pad-bottom-35 wow fadeInUp" data-wow-duration=".6s">
 								{ profile.bio}
 							</p>
-              <div class="per-signature margin-top-sm wow fadeInUp" data-wow-duration=".4s">
-								<img class="img-responsive" width="80" style={ { width : "100px" } } src={ signature } alt="signature" />
+              <div className="per-signature margin-top-sm wow fadeInUp" data-wow-duration=".4s">
+								<img className="img-responsive" width="80" style={ { width : "100px" } } src={ signature } alt="signature" />
 							</div>
           </section>
-          <hr class="separater-hr">
+          <hr className="separater-hr">
+          </hr>
+         
+         <FullStack top_skills={profile.top_skills.reverse()} />
+         <hr className="separater-hr">
           </hr>
           
-          <FullStack skills={profile.skills}/>
+         <TechSkills skills={ profile.skills } />
         </div>
       </Fragment>
     )

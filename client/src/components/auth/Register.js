@@ -4,7 +4,7 @@ import { setAlert } from '../../actions/alert';// call action type (setAlert) fr
 
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
-import { link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const Register = ({ setAlert, register ,isAuth}) => {
 
