@@ -7,6 +7,7 @@ import Spinner from '../layout/ui/spinner';
 import signature from '../../img/signature.jpg';
 import FullStack from '../full-stack/FullStack';
 import TechSkills from '../tech-skills/TechSkills';
+import Experience from '../experience/Experience';
 
 const Home = ({
   profile: { profile, loading }   ,
@@ -51,6 +52,10 @@ const Home = ({
           </hr>
           
          <TechSkills skills={ profile.skills } />
+         <hr className="separater-hr">
+          </hr>
+          
+        <Experience experience={ profile.experience } />
         </div>
       </Fragment>
     )
