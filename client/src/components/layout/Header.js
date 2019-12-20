@@ -1,10 +1,10 @@
 import React from 'react';
 import '../../scss/style.scss';
  
-const Header = () => {
+const Header = (props) => {
    return (
-      <div>
-        <header className="">
+      <div id="header">
+        <header className={props.fixedClass}>
           <div className="header-wrap col-lg-10 center-div">
             <div className="float-left name">
               <a data-scroll="" href="#body">

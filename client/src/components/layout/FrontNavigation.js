@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-scroll";
 import '../../css/style.css';
 
 const FrontNavbar = () => {
@@ -16,20 +16,65 @@ const FrontNavbar = () => {
         </div>
             <div className="collapse navbar-collapse" id="navbar_collapse">
                 <ul className="nav navbar-nav">
-                    <li className="active">
-                        <Link to="/about"><span> About </span></Link>
+                    <li>
+                        <Link
+                            activeClass="active"
+                            to="intro_content_sec"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration= {500}
+                            ><span> about </span>
+                        </Link>
                     </li>
-                    <li className="">
-                        <a data-scroll="" href="#services_sec">
-                            <span>services</span></a>
+                    <li>
+                        <Link
+                            activeClass="active"
+                            to="fullstack"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration= {500}
+                        ><span> Full Stack </span></Link>
                     </li>
-                    <li className=""><a data-scroll="" href="#skill_sec"><span>Full Stack</span></a><span>Full Stack</span></li>
-                    <li><a data-scroll="" href="#work_sec"><span>Other Skills</span></a><span>Other Skills</span></li>
-                    <li><a data-scroll="" href="#edu_sec"><span>education</span></a><span>education</span></li>
-                    <li><a data-scroll="" href="#exp_sec"><span>experience</span></a><span>experience</span></li>
-                    <li><a data-scroll="" href="#client_sec"><span>clients</span></a><span>clients</span></li>
-                    <li><a data-scroll="" href="#achivement_sec"><span>achivements</span></a><span>achivements</span></li>
-                    <li><a data-scroll="" href="#contact_sec"><span>contact</span></a><span>contact</span></li>
+                    <li>     
+                        <Link
+                            activeClass="active"
+                            to="tech_skills"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration= {500}
+                        ><span> Tech Skills </span></Link>
+                    </li>
+                    <li> <Link
+                            activeClass="active"
+                            to="exp_sec"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration= {500}
+                        ><span> Experience </span></Link>
+                    </li>
+                    <li> <Link
+                            activeClass="active"
+                            to="edu_sec"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration= {500}
+                        ><span> Education </span></Link>
+                    </li>
+                    <li>
+                    <Link
+                            activeClass="active"
+                            to="contact_sec"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration= {500}
+                        ><span> Contact </span></Link>
+                    </li>
                 </ul>
             </div>
         </nav>

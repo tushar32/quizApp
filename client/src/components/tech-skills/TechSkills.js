@@ -3,9 +3,13 @@ import React from 'react';
 const TechSkills = (props) => {
    return (
       <div>
-        <section id="skill_sec" className="col-lg-10 col-md-11 col-sm-11 center-div skills-wrap  sec-pad-top sec-pad-bottom-xs">
+        <section id="tech_skills" className="col-lg-10 col-md-11 col-sm-11 center-div skills-wrap  sec-pad-top sec-pad-bottom-xs">
             <h6>technical skills</h6>
-            <p className="wow fadeInUp" data-wow-duration=".4s">As a reluctant developer, I fled from a traditional path and explored my creativity, trough trying my hands on various techniques and software. Software is more than just a tool, and I try to dig deep into it. Today, I knack for critical thinking, empathy and creativity to create viable and impactful solutions using these technologies.</p>
+            <p className="wow fadeInUp" data-wow-duration=".4s">
+                As a reluctant developer, I come across to work with various technology and explore my creativity.
+                Software is more than just a tool, and I try to dig deep into it. I am always resposible to create a viable and impactful solution
+                using these technologies
+            </p>
             <div className="row margin-top-40">
                 {props.skills.map((skill,key) => (
                     <div key={key} className="col-sm-3 margin-bottom-sm">
@@ -13,8 +17,8 @@ const TechSkills = (props) => {
                         <div className="progress-bar-graph">
                             <div className="progress-bar-wrap">
                                 <div className="bar-wrap">
-                                    <span data-width="97" style={{ width: skill.substr(skill.indexOf(":")+1)+"%" }} >
-                                        
+                                    <span data-width={skill.substr(skill.indexOf(":")+1)*10} style={{ width: skill.substr(skill.indexOf(":")+1)*10 +"%" }} >
+                                    <strong style={{ opacity: 1 }}><i>{skill.substr(skill.indexOf(":")+1)}</i></strong>
                                     </span>
                                 </div>
                             </div>

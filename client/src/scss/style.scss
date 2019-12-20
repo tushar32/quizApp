@@ -25,6 +25,7 @@ Project:	Eric
 /** Imports **/
 /****************************/
 @import "../css/animate.css";
+@import "../css/pe-icon-7-stroke.css";
 @import "../css/owl.theme.default.min.css";	
 @import "../css/inputtext.css";	
 @import "../css/filter.css";	
@@ -297,7 +298,7 @@ p{
 	overflow:hidden!important;
 }
 .fullStackTable {
-	width: 30%;
+	width: 25%;
 	text-align: center;
 	margin: 0 auto;
 }
@@ -496,6 +497,8 @@ p{
 	}
 }
 
+
+
 /********Header Sec CSS********/
 .btn{
 	font-size:11px;
@@ -619,7 +622,7 @@ nav.navbar.navbar-default.vertical-nav {
 		background:none;
 		border:none;
 		@include transition(all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s);
-		width:20%;
+		width:auto;
 		
 	li{
 		display: block;
@@ -630,7 +633,7 @@ nav.navbar.navbar-default.vertical-nav {
 		span {
 			font-size: 11px;
 			font-weight: 500;
-			left: 90px;
+			left: 150px;
 			line-height: 1;
 			color:$secondery_color;
 			position: absolute;
@@ -643,9 +646,8 @@ nav.navbar.navbar-default.vertical-nav {
 			background:none;
 			border:none;
 			padding:0;
-			span {
-				display:none;
-			}
+			cursor: pointer;
+
 			&:hover , &:active, &:focus  {
 				background:none;
 				border:none;
@@ -676,33 +678,43 @@ nav.navbar.navbar-default.vertical-nav {
 				width: 0;
 			}
 		}
-		&.active {
-			a{
-				&:before {
-					opacity: 0;
-					@include transform(scale(1));
-					@include transition(all 0.5s ease-out 0s);
-				}	
+		a{			
+			
+			&:before {
+				opacity: 0;
+				@include transform(scale(1));
+				@include transition(all 0.5s ease-out 0s);
+			}	
+			&:after {
+					background: #fff none repeat scroll 0 0;
+					border: 3px solid #fff;
+					border-radius: 50%;
+					height: 0;
+					transition: all 0.1s ease-out 0s;
+					width: 0;
+				}
+			
+			&.active {
+				span {
+					left: 80px;
+					opacity:1;
+					color:$primery_font_color;
+				}
 				&:after {
 					background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 					border-width: 2px;
 					height: 8px;
 					width: 8px;
-				}
-			}
-			span {
-				left: 50px;
-				opacity:1;
-				color:$primery_font_color;
-			}
+					}
 		}
 		&:hover {
 			span {
-				left: 50px;
+				left: 80px;
 				opacity:1;
 				color:$primery_font_color;
 			}
 		}
+	}
 	}
 	
 }
@@ -1124,8 +1136,9 @@ a.goto-social,a.goto-social:hover {
 		p {
 			color:#ccc;
 			a {
-			 color:$primery_font_color;
+			 color:#e91e63;
 			 font-weight:500;
+			 font-style: oblique;
 			}
 		}
 	}
@@ -1675,3 +1688,8 @@ footer {
 	}
 }
 
+@media (min-width: 768px){
+	.navbar-toggle {
+		display: none;
+	}
+}

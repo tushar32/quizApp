@@ -78,6 +78,7 @@ router.post('/',
     console.log(profileFields);
     profileFields.top_skills = {};
     if (req.body.top_skills) profileFields.top_skills = req.body.top_skills;
+    if (req.body.experience) profileFields.experience = req.body.experience;
 
     try{
       let profile = await Profile.findOne({user: req.user.id});
@@ -325,6 +326,27 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ msg: "Server error" });
+  }
+});
+
+//@route GET api/experience/:id
+//@desc  get experience by experience_id
+//@access Private
+
+router.get('/:id',auth,
+async(req,res) => {
+  try {
+      const post = await Post.findById(req.params.id);
+      
+      if(!post)
+        return res.status(404).json({ msg: 'Post not found'});
+
+      res.json(post);
+  } catch (error) {
+       if(error.kind === 'ObjectId')
+            return res.status(404).json({ msg: 'Post not found'});
+
+        return res.status(500).json({ msg: 'Server error'})
   }
 });
 

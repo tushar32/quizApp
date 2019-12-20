@@ -50,26 +50,26 @@ const AddExperince   = ({ addExperience, history }) => {
         <small>* = required field</small>
         <form className="form"  onSubmit={e => onSubmit(e) }>
             <div className="form-group">
-            <input type="text" placeholder="* Job Title" name="title" 
-            value={title} onChange={ e => onChange(e) } required />
+                <input type="text" placeholder="* Job Title" name="title" 
+                value={title} onChange={ e => onChange(e) } required />
             </div>
             <div className="form-group">
-            <input type="text" placeholder="* Company" name="company" required 
-            value={company} onChange= { e => onChange(e) }/>
+                <input type="text" placeholder="* Company" name="company" required 
+                value={company} onChange= { e => onChange(e) }/>
             </div>
             <div className="form-group">
-            <input type="text" placeholder="Location" name="location" 
-            value={location} onChange= { e => onChange(e) }/>
+                <input type="text" placeholder="Location" name="location" 
+                value={location} onChange= { e => onChange(e) }/>
             </div>
             <div className="form-group">
-            <h4>From Date</h4>
-            <input type="date" name="from" value={from} onChange= { e => onChange(e) }/>
-            </div>
+                <h4>From Date</h4>
+                <input type="date" name="from" value={from} onChange= { e => onChange(e) }/>
+                </div>
             <div className="form-group">
             <p>
                 <input type="checkbox" name="current" checked={current}
                 value={current} onChange= { e => {
-                setFormData({ ...formData,current: !current });    
+                setFormData({ ...formData,current: !current });
                 toggleDisabled(!toDateDisabled)
                 }}
             /> Current Job</p>

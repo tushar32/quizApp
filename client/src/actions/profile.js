@@ -19,6 +19,23 @@ export const getCurrentProfile = () => async dispatch => {
     }
 }
 
+export const getExperience = () => async dispatch => {
+  
+    try {
+        const res = await axios.get('/api/profile/me');
+        
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
 export const getProfile = () => async dispatch => {
   
     try {
@@ -115,10 +132,9 @@ export const addEducation = (formData) => async dispatch => {
             'Content-Type' : 'application/json'
         }
     }
-
     const body = JSON.stringify(formData);
     try {
-        const res = await axios.post('/api/profile/education', body, options)
+        const res = await axios.put('/api/profile/education', body, options)
 
         dispatch({
             type:UPDATE_PROFILE,

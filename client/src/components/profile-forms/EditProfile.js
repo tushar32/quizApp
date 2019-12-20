@@ -3,9 +3,10 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from '../../actions/profile';
+import Spinner from '../layout/ui/spinner';
+import moment from 'moment';
  
 const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentProfile, history }) => {
-
   
     const [formData, setFormData ] = useState({
         company: "",
@@ -20,7 +21,8 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin: "",
         youtube: "",
         instagram: "",
-        top_skills: [{ title:'' ,description:''}]
+        top_skills: [{ title:'' ,description:''}],
+        experience: []
      });
 
      useEffect(() => {
@@ -40,10 +42,9 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin: loading || !profile.social ? '' : profile.social.linkedin,
         youtube: loading || !profile.social ? '' : profile.social.youtube,
         instagram: loading || !profile.social ? '' : profile.social.instagram,
-        top_skills: loading || !profile.top_skills ? [{ title:'' ,description:''}] : profile.top_skills
+        top_skills: loading || !profile.top_skills ? [{ title:'' ,description:''}] : profile.top_skills,
+        experience: loading || !profile.experience ? [] : profile.experience
       });
-      console.log(top_skills);
-  
   }, [loading, getCurrentProfile]);
 
      const {
@@ -59,20 +60,19 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         linkedin,
         youtube,
         instagram,
-        top_skills
+        top_skills,
+        experience
     } = formData;
 
    const [ displaySocialInput, ToggleSocialInput ] = useState(false);
-
-   const onChange = e => setFormData({
-    ...formData,
-     [e.target.name]: e.target.value
-  })
-  console.log('top_skills',top_skills);
+   const [ displayExp, ToggleExp ] = useState(false);
+   const [ toDateDisabled, toggleDisabled] = useState({id: 0, value: false });
 
   const onSubmit = e =>  {
     e.preventDefault();
     formData.top_skills = top_skills;
+    formData.experience = experience;
+    
     createProfile(formData, history,true)
  }
 
@@ -99,8 +99,47 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
     })
   }
 
-   return (
-      <Fragment>
+  function handleChangeExp(e) {
+    let updateExp = [...experience]; 
+
+    // this will map the exact skill fields
+    updateExp[e.target.dataset.idx][e.target.dataset.name] = e.target.value;    
+    
+    setFormData({
+      ...formData,
+      updateExp
+    })
+  }
+
+  function handleToggle(e) {
+    let updateExp = [...experience]; 
+    const checked = e.target.checked;
+    
+    if(checked == "false"){
+      e.target.checked = true;
+    } else if(checked == "false"){
+      e.target.checked = true;
+    }
+       console.log( e.target.checked);
+       
+     
+    updateExp[e.target.dataset.idx][e.target.dataset.name] = e.target.checked;   
+    console.log(updateExp);
+    setFormData({
+      ...formData,
+      updateExp
+    });
+  }
+  
+  const onChange = e => setFormData({
+    ...formData,
+     [e.target.name]: e.target.value
+  })
+
+  return loading && profile === null ? (
+    <Spinner />
+    ) :
+     ( <Fragment>
         <h1 className="large text-primary">
         Create Your Portfolio
       </h1>
@@ -109,30 +148,84 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         portfolio stand out
       </p>
       <small>* = required field</small>
+      
       <form className="form" onSubmit={e => onSubmit(e) }>
+        <div className="my-2">
+          <button type="button" onClick = { () => { ToggleExp(!displayExp) } } className="btn btn-primary btn-light">
+            Edit Experience
+          </button>
+        </div>
 
-      {top_skills.map((value,idx) => {
-        const titleId = `title-${idx}`;
-        const descId = `description-${idx}`;
+        { displayExp && 
+          experience.map((value,idx) => {
+            const titleId = `title-${idx}`;
+            const descId = `description-${idx}`;
+            const companyId = `company-${idx}`;
+            const fromId = `from-${idx}`;
+            const locationId = `location-${idx}`;
+            const toId = `to-${idx}`;
+            const currentId = `current-${idx}`;
+           
+            const from = moment(experience[idx].from).format('YYYY-MM-DD');
+            const to = moment(experience[idx].to).format('YYYY-MM-DD');
 
-        return (
-          <div key={`title-${idx}`}>        
-            <div className="form-group social-input">
-                <input type="text" data-idx={idx} name={titleId} data-name="title"  
-                placeholder="Name of Skill" value={top_skills[idx].title}
-                onChange={handleChange }/>
-                <textarea placeholder="A Short Description" data-name="description" 
-                name={ descId} data-idx={idx} value={top_skills[idx].description}
-                onChange={handleChange }></textarea>
-            </div>
-          </div>
-        );
-       })
-      }
-        <button type="button" onClick = {AddTop5Skills} className="btn btn-light">
-              Add Top 5 SKills
-            </button>
-
+            return (
+             
+              <div key={`title-${idx}`}>
+                <div className="form-group">
+                  <input type="text" placeholder="* Job Title" name={titleId} 
+                  value={experience[idx].title} data-idx={idx} data-name="title" onChange={ handleChangeExp } required />
+                </div>
+                <div className="form-group">
+                  <input type="text" placeholder="* Company" name={companyId} required 
+                  value={experience[idx].company} data-idx={idx} data-name="company" onChange= { handleChangeExp }/>
+                </div>
+                <div className="form-group">
+                  <input type="text" placeholder="Location" name={locationId} 
+                  value={experience[idx].location} data-idx={idx}  data-name="location" onChange= { handleChangeExp }/>
+                </div>
+                <div className="form-group">
+                  <h4>From Date</h4>
+                  <input type="date" name={fromId} data-idx={idx}  data-name="from" 
+                  value={from}  onChange= { handleChangeExp } />                
+                </div>
+                <div className="form-group">
+                  <p>
+                    <input type="checkbox" data-idx={idx} name={currentId}  data-name="current"
+                    checked={experience[idx].current}
+                    value={experience[idx].current} onChange= { e => {
+                    handleToggle(e);    
+                    toggleDisabled({ id: idx, value:!toDateDisabled.value})
+                    }}
+                  /> Current Job</p>
+                </div>
+                <div className="form-group">
+                    <h4>To Date</h4>
+                    <input 
+                    type="date" 
+                    name={toId}
+                    data-idx={idx}
+                    disabled={ experience[idx].current  ? 'disabled' : ''}
+                    data-name="to"
+                    value={to} onChange= { handleChangeExp }/>
+                </div>
+                <div className="form-group">
+                    <textarea
+                        name={descId}
+                        data-idx={idx}
+                        cols="30"
+                        rows="5"
+                        placeholder="Job Description"
+                        data-name="description"
+                        value={experience[idx].description} onChange= {handleChangeExp }
+                    ></textarea>
+                </div>
+              </div>
+              
+            );
+          })
+          
+          }
         <div className="form-group">
           <select name="status" value={status} 
           onChange={e => onChange(e) } >
@@ -192,6 +285,29 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
         </div>
 
         
+        {top_skills.map((value,idx) => {
+          const titleId = `title-${idx}`;
+          const descId = `description-${idx}`;
+
+          return (
+            <div key={`title-${idx}`}>        
+              <div className="form-group social-input">
+                  <input type="text" data-idx={idx} name={titleId} data-name="title"  
+                    placeholder="Name of Skill" value={top_skills[idx].title}
+                      onChange={handleChange }/>
+                    <textarea placeholder="A Short Description" data-name="description" 
+                      name={ descId} data-idx={idx} value={top_skills[idx].description}
+                      onChange={handleChange }></textarea>
+                </div>
+              </div>
+            );
+          })
+        }
+          { top_skills.length < 5 &&
+            <button type="button" onClick = {AddTop5Skills} className="btn btn-light">
+                  Add Top 5 SKills
+            </button>
+          }
 
         <div className="my-2">
           <button type="button" onClick = { () => { ToggleSocialInput(!displaySocialInput) } } className="btn btn-light">
@@ -199,42 +315,43 @@ const EditProfile = ({  profile: { profile, loading },createProfile, getCurrentP
           </button>
           <span>Optional</span>
         </div>
-    { displaySocialInput && 
-        <Fragment>
-        <div className="form-group social-input">
-          <i className="fab fa-twitter fa-2x"></i>
-          <input type="text" placeholder="Twitter URL" name="twitter" value={twitter} 
-          onChange={e => onChange(e) }/>
-        </div>
 
-        <div className="form-group social-input">
-          <i className="fab fa-facebook fa-2x"></i>
-          <input type="text" placeholder="Facebook URL" name="facebook" value={facebook} 
-          onChange={e => onChange(e) }/>
-        </div>
+        { displaySocialInput && 
+            <Fragment>
+            <div className="form-group social-input">
+              <i className="fab fa-twitter fa-2x"></i>
+              <input type="text" placeholder="Twitter URL" name="twitter" value={twitter} 
+              onChange={e => onChange(e) }/>
+            </div>
 
-        <div className="form-group social-input">
-          <i className="fab fa-youtube fa-2x"></i>
-          <input type="text" placeholder="YouTube URL" name="youtube" value={youtube} 
-          onChange={e => onChange(e) }/>
-        </div>
+            <div className="form-group social-input">
+              <i className="fab fa-facebook fa-2x"></i>
+              <input type="text" placeholder="Facebook URL" name="facebook" value={facebook} 
+              onChange={e => onChange(e) }/>
+            </div>
 
-        <div className="form-group social-input">
-          <i className="fab fa-linkedin fa-2x"></i>
-          <input type="text" placeholder="Linkedin URL" name="linkedin" value={linkedin} 
-          onChange={e => onChange(e) }/>
-        </div>
+            <div className="form-group social-input">
+              <i className="fab fa-youtube fa-2x"></i>
+              <input type="text" placeholder="YouTube URL" name="youtube" value={youtube} 
+              onChange={e => onChange(e) }/>
+            </div>
 
-        <div className="form-group social-input">
-          <i className="fab fa-instagram fa-2x"></i>
-          <input type="text" placeholder="Instagram URL" name="instagram" value={instagram} 
-          onChange={e => onChange(e) }/>
-        </div>
-        
-        </Fragment> 
-    }
+            <div className="form-group social-input">
+              <i className="fab fa-linkedin fa-2x"></i>
+              <input type="text" placeholder="Linkedin URL" name="linkedin" value={linkedin} 
+              onChange={e => onChange(e) }/>
+            </div>
+
+            <div className="form-group social-input">
+              <i className="fab fa-instagram fa-2x"></i>
+              <input type="text" placeholder="Instagram URL" name="instagram" value={instagram} 
+              onChange={e => onChange(e) }/>
+            </div>
+            
+            </Fragment> 
+        }
          <input type="submit" className="btn btn-primary my-1" />
-        <a className="btn btn-light my-1" href="dashboard.html">Go Back</a>
+        <a className="btn btn-light my-1" href="/dashboard">Go Back</a>
         </form>
       </Fragment>
     );

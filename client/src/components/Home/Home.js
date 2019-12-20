@@ -8,11 +8,17 @@ import signature from '../../img/signature.jpg';
 import FullStack from '../full-stack/FullStack';
 import TechSkills from '../tech-skills/TechSkills';
 import Experience from '../experience/Experience';
+import Education from '../education/Education';
+import Contact from '../contact/Contact';
+import Footer from '../layout/Footer';
+import Typed from 'react-typed';
 
-const Home = ({
-  profile: { profile, loading }   ,
-  getProfile }) => {
-
+const Home = (props) => {
+  
+ const  {
+    profile: { profile, loading },
+    getProfile 
+  } = props;
 
   useEffect(() => {
     getProfile();
@@ -22,17 +28,35 @@ const Home = ({
     <Spinner />
     ) :
     (  <Fragment>
-        <Header />
+        <Header fixedClass={props.fixedClass} />
         <div id="main_content" className="content-block margin-top-150 margin-top-sm-70 margin-top-xs-50">
           <section id="intro_content_sec" className="col-lg-10 col-md-11 col-sm-11 center-div intro-content-wrap sec-pad"> 
             <div className="person-img margin-bottom-xs"></div>
 
               <h1>
                   Hey!
-                  <span id="typed">&nbsp;I Am { profile.user.name } 
-                  <br/> { profile.status }. 
-                  <br/>Living in { profile.location } City.</span>
-                  <span className="typed-cursor">|</span>
+                  <Typed
+                    strings={[
+                      `I Am ${ profile.user.name }` 
+                   ]}
+                    typeSpeed={40}
+                   />
+                  <br/>
+                    <Typed
+                      strings={[
+                        `${ profile.status }` 
+                      ]}
+                    typeSpeed={40}
+                   />
+                  <br/>
+                    <Typed
+                      strings={[
+                        `Living in ${ profile.location } City.` 
+                    ]}
+                    typeSpeed={40}
+                   />
+
+                 
                 </h1>
 							<h6>
 								about
@@ -47,15 +71,26 @@ const Home = ({
           <hr className="separater-hr">
           </hr>
          
-         <FullStack top_skills={profile.top_skills.reverse()} />
-         <hr className="separater-hr">
-          </hr>
-          
-         <TechSkills skills={ profile.skills } />
-         <hr className="separater-hr">
-          </hr>
-          
-        <Experience experience={ profile.experience } />
+          <FullStack top_skills={profile.top_skills.reverse()} />
+          <hr className="separater-hr">
+            </hr>
+            
+          <TechSkills skills={ profile.skills } />
+          <hr className="separater-hr">
+            </hr>
+
+          <Experience experience={ profile.experience } />
+          <hr className="separater-hr">
+            </hr>
+
+          <Education education={ profile.education } />
+          <hr className="separater-hr">
+            </hr>
+
+          <Contact contact={ profile.contact } />
+          <hr className="separater-hr">
+            </hr>
+          <Footer/>
         </div>
       </Fragment>
     )

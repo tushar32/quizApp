@@ -35,6 +35,8 @@ router.post('/', [
             d: 'mm'
         })
         
+        console.log('avatar',avatar);
+        
         user = new User({
            name,
            email,
