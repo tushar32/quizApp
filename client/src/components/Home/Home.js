@@ -11,7 +11,7 @@ import Experience from '../experience/Experience';
 import Education from '../education/Education';
 import Contact from '../contact/Contact';
 import Footer from '../layout/Footer';
-import Typed from 'react-typed';
+import HTMLParser from 'react-typed';
 
 const Home = (props) => {
   
@@ -35,27 +35,12 @@ const Home = (props) => {
 
               <h1>
                   Hey!
-                  <Typed
+                  <HTMLParser
                     strings={[
-                      `I Am ${ profile.user.name }` 
+                      `I Am ${ profile.user.name } <br/> ${ profile.status } <br/> Living in ${ profile.location } City.`
                    ]}
                     typeSpeed={40}
                    />
-                  <br/>
-                    <Typed
-                      strings={[
-                        `${ profile.status }` 
-                      ]}
-                    typeSpeed={40}
-                   />
-                  <br/>
-                    <Typed
-                      strings={[
-                        `Living in ${ profile.location } City.` 
-                    ]}
-                    typeSpeed={40}
-                   />
-
                  
                 </h1>
 							<h6>
