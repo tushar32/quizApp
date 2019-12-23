@@ -13,7 +13,7 @@ const Experience = (props) => {
                     const exp = experience[key];
                     return (
 
-                        <div key={key} className="row exp-timeline timeline-active " style={{ height: "216px" }}>
+                        <div key={key} className="row exp-timeline timeline-active">
                             <Col xs={2}>
                                 <div className="timeline-st" style={{ height: "201px" }}></div>
                             </Col>

@@ -66,10 +66,10 @@ class  App extends Component  {
             <div className="fixed-bg"></div>
               <div className="container-fluid">
                 <div className="row">
-                  <div id="vertical_nav_wrap" className="col-lg-4 col-xs-12 pad-zero vertical-nav-wrap">
+                  <div id="vertical_nav_wrap" className="col-lg-3 col-xs-12 pad-zero vertical-nav-wrap">
                     <FrontNavbar/> 
                   </div>
-                  <div className="col-lg-8 col-xs-12 pad-zero">
+                  <div className="col-lg-9 col-xs-12 pad-zero">
                     <Home fixedClass={this.state.class } />
                   </div> 
                 </div>

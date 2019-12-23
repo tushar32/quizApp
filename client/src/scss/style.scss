@@ -583,7 +583,7 @@ header {
 	&.fixed {
 		top: -70px;
 		margin-top: 70px;
-		width: 66.66%;
+		width: 75%;
 		position:fixed;
 		z-index:99;
 		background:$primery_font_color;
@@ -996,6 +996,7 @@ a.goto-social,a.goto-social:hover {
 				opacity:.3;
 			}
 			&.timeline-active { 
+				min-height: 216px;
 				.exp-content-wrap {
 					opacity:1!important;
 				}
@@ -1674,6 +1675,9 @@ footer {
 	.margin-top-xs-50 {
 		margin-top:50px;
 	}
+	.timeline-active { 
+		min-height: 310px;;
+	}
 	
 }
 @media only screen and (max-width: 414px) {
@@ -1693,4 +1697,5 @@ footer {
 	.navbar-toggle {
 		display: none;
 	}
+
 }
