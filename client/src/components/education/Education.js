@@ -10,7 +10,8 @@ const Experience = (props) => {
         <section id="edu_sec" className="col-lg-10 col-md-11 col-sm-11 center-div education-wrap  sec-pad">
         <h6>education</h6>
         <p className="wow fadeInUp" data-wow-duration=".4s">
-            I spent 3 years learning Web Design &amp; Development, got my Bachelor degree in Communication and Applied Art and started working independently. I think one should never stop learning and go through a process of acquiring knowledge.
+            I spent 3 years learning Web Development, I completed O level and PGDCA and started working independently. 
+            I think one should never stop learning and go through a process of acquiring knowledge.
         </p>
         <div className="qualfication-wrap">
             {education.map((edu,key) => (

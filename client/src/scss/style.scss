@@ -166,7 +166,7 @@ p{
 .p-small {
 	font-size:14px;
 	color:#ccc;
-	line-height:27px;
+	line-height:25px;
 }
 .force-UTF-8{
     content: "¡";
@@ -962,8 +962,9 @@ a.goto-social,a.goto-social:hover {
 		font-family:$secondery_font;
 		font-size:14px;
 		font-weight:500;
-		 padding-bottom: 15px;
+		 padding-bottom: 10px;
 		text-transform:capitalize;
+		color:#e91e63;
 	}
 	
 	.timeline-st {
