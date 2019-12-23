@@ -3,11 +3,11 @@ import '../../scss/style.scss';
  
 const Header = (props) => {
    return (
-      <div id="header">
+      <div id="header_scroll">
         <header className={props.fixedClass}>
           <div className="header-wrap col-lg-10 center-div">
             <div className="float-left name">
-              <a data-scroll="" href="#body">
+              <a data-scroll="" href="/">
               <span>
                 Tushar Barate
               </span>

@@ -42,7 +42,7 @@ const Home = (props) => {
                     typeSpeed={40}
                    />
                  
-                </h1>
+              </h1>
 							<h6>
 								about
 							</h6>
