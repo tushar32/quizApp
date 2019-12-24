@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import Popup from '../layout/ui/popup';
-import { Link } from 'react-router-dom'
  
 const FullStack = (props) => {
   const [show, setShow] = useState({id: 0 ,show: false });
@@ -18,14 +17,14 @@ const FullStack = (props) => {
          <p className="pad-bottom-35 wow fadeInUp word-space"> The stack is not yet full, but it is a full stack...!</p>
 
           <div className="row">
-            <table className="fullStackTable" >   
+            <table className="fullStackTable">   
               <tbody>        
               { props.top_skills.map( (skill,key) => (
                 
                   <tr key={key}>
                     <td> 
-                      <Link onClick={e => handleShow(e, key)} >  
-                      { skill.title }  </Link>
+                      <a href="!#" onClick={e => handleShow(e, key)} >  
+                      { skill.title }  </a>
 
                       <Popup 
                         key={key}

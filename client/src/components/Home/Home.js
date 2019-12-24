@@ -24,9 +24,13 @@ const Home = (props) => {
     getProfile();
   },[getProfile]);
 
+ 
+  if(loading && profile === null){
+      
+  }
    return loading && profile === null ? (
     <Spinner />
-    ) :
+    ) : 
     (  <Fragment>
         <Header fixedClass={props.fixedClass} />
         <div id="main_content" className="content-block margin-top-150 margin-top-sm-70 margin-top-xs-50">
@@ -34,10 +38,10 @@ const Home = (props) => {
             <div className="person-img margin-bottom-xs"></div>
 
               <h1>
-                  Hey!
+                  Hey! 
                   <HTMLParser
                     strings={[
-                      `I Am ${ profile.user.name } <br/> ${ profile.status } <br/> Living in ${ profile.location } City.`
+                      ` I Am ${ profile.user.name } <br/> ${ profile.status } <br/> Living in ${ profile.location } City.`
                    ]}
                     typeSpeed={40}
                    />
@@ -55,8 +59,10 @@ const Home = (props) => {
           </section>
           <hr className="separater-hr">
           </hr>
-         
-          <FullStack top_skills={profile.top_skills.reverse()} />
+       
+        
+
+          <FullStack top_skills={profile.top_skills} />
           <hr className="separater-hr">
             </hr>
             

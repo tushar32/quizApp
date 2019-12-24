@@ -301,6 +301,9 @@ p{
 	width: 25%;
 	text-align: center;
 	margin: 0 auto;
+	a{
+		cursor: pointer;
+	}
 }
 
 .fullStackTable td:first-child{
@@ -490,7 +493,7 @@ p{
 	.person-img {
 		height:150px;
 		width:150px;
-		background:url(../img/candidate.png);
+		background:url(../img/candidate.jpg);
 		border-radius:50%;
 		background-repeat:no-repeat;
 		background-size:cover;

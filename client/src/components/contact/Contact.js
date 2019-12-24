@@ -1,6 +1,4 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
-import moment from 'moment';
 
 const Experience = (props) => {
    return (
@@ -13,13 +11,13 @@ const Experience = (props) => {
                     <form name="contactform" method="post" className="row form-horizontal" role="form">
                         <div className="form-group input--hoshi col-sm-6">
                             <div className="input-wrap">
-                                <input autocomplete="off" data-ng-model="formData.inputName" type="text" className="form-control input" id="inputName" name="inputName" placeholder="Name" required="" />
+                                <input autoComplete="off" data-ng-model="formData.inputName" type="text" className="form-control input" id="inputName" name="inputName" placeholder="Name" required="" />
                                 <label className="input__label input__label--hoshi input__label--hoshi-color-1"></label>
                             </div>
                         </div>
                         <div className="form-group  input--hoshi col-sm-6">
                             <div className="input-wrap">
-                                <input autocomplete="off" data-ng-model="formData.inputEmail" type="email" className="form-control input" placeholder="Email" id="inputEmail" name="inputEmail" required=""/>
+                                <input autoComplete="off" data-ng-model="formData.inputEmail" type="email" className="form-control input" placeholder="Email" id="inputEmail" name="inputEmail" required=""/>
                                 <label className="input__label input__label--hoshi input__label--hoshi-color-1"></label>
                             </div>
                         </div>

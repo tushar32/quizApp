@@ -20,12 +20,12 @@ const Footer = () => {
                         <ul className="social-icons float-right">
                             <li>
                                 <a href="https://www.facebook.com/tushar.barate.7" className="social-icon">
-                                <i class="fab fa-facebook-square fa-2x"></i>
+                                <i className="fab fa-facebook-square fa-2x"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://www.linkedin.com/in/tushar-barate-7b010865/" className="social-icon">
-                                <i class="fab fa-linkedin fa-2x"></i>
+                                <i className="fab fa-linkedin fa-2x"></i>
                                 </a>
                             </li>
                         </ul>                    
