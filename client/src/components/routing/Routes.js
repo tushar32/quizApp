@@ -10,7 +10,7 @@ import AddExperience from '../profile-forms/AddExperience';
 import AddEducation from '../profile-forms/AddEducation';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
-import JestTest from '../../test/TestComponent';
+import JestTest from '../../TestComponent';
 
 const Routes = () => {
   return (
