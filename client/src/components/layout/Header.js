@@ -14,7 +14,7 @@ const Header = (props) => {
               </a>	
             </div>
             <div className="float-right social-download-wrap">
-              <a href="/" className="btn btn-default float-left">
+              <a href="/Resume.docx" className="btn btn-default float-left">
                 <span className="mask"></span>
                 <span className="btn-label">
                 <b>download resume</b>
